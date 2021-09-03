@@ -27,5 +27,7 @@
   "captchaDialogCaptchaIncorrect": "Captcha incorrect, please input again",
   "signUpPageSendVerifyCodeSuccess": "Verify code send successful",
   "signUpPageUserHadSignedUp": "User had signed up",
-  "signUpPageSendVerifyCodeFailed": "Verify code send failed"
+  "signUpPageSendVerifyCodeFailed": "Verify code send failed",
+  "signUpPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
+  "signUpPageVerifyCodeIncorrect": "Verify code incorrect"
 }

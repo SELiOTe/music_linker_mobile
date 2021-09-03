@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/model/api/auth/sign_up_sms.dart';
 import 'package:mlm/page/auth/auth_page.dart';
+import 'package:mlm/util/const_utils.dart';
 import 'package:mlm/util/http_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 
@@ -46,7 +47,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 // 密码
                 _getPasswordWidget(),
                 // 验证码框
-                _getVerifyCodeWidget()
+                _getVerifyCodeWidget(),
+                SizedBox(height: 32),
+                // 下一步
+                getNextButton(_nextStepOnPressed),
+                SizedBox(height: 32)
               ],
             )
           ],
@@ -193,5 +198,17 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       });
     });
+  }
+
+  /// 获取下一步
+  void _nextStepOnPressed() async {
+    if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
+      showToast(AppLocalizations.of(context)!.signUpPagePasswordTooSimple);
+      return;
+    }
+    if (!RegExp(VERIFY_CODE_REGEX).hasMatch(_verifyCode)) {
+      showToast(AppLocalizations.of(context)!.signUpPageVerifyCodeIncorrect);
+      return;
+    }
   }
 }

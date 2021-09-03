@@ -248,7 +248,7 @@ Future<CaptchaDialogResult?> getCaptchaAndSendVerifyCode(
   return await showDialog<CaptchaDialogResult?>(
       context: context,
       barrierDismissible: false,
-      barrierColor: Colors.transparent,
+      // barrierColor: Colors.transparent,
       builder: (_) => StatefulBuilder(builder: (context, setState) {
             return WillPopScope(
                 onWillPop: () async => true, child: CaptchaDialog());

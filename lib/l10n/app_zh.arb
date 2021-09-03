@@ -114,5 +114,13 @@
   "signUpPageSendVerifyCodeFailed": "短信验证码发送失败",
   "@signUpPageSendVerifyCodeFailed": {
     "description": "注册页短信验证码发送失败提示"
+  },
+  "signUpPagePasswordTooSimple": "密码必须为 8 位以上非空字符且同时包含字母数字",
+  "@signUpPagePasswordTooSimple": {
+    "description": "注册页密码太简单提示"
+  },
+  "signUpPageVerifyCodeIncorrect": "短信验证码不正确",
+  "@signUpPageVerifyCodeIncorrect": {
+    "description": "注册页短信验证码不正确提示"
   }
 }

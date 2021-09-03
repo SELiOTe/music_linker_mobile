@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/model/api/auth/captcha.dart';
+import 'package:mlm/util/const_utils.dart';
 import 'package:mlm/util/http_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 
@@ -53,15 +54,8 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
                           _getTitle(),
                           SizedBox(height: 16),
                           _getCaptchaImage(screenWidth),
-                          GestureDetector(
-                            child: Column(
-                              children: <Widget>[
-                                _getRefreshButton(),
-                                _getCaptchaInputWidget(screenWidth),
-                              ],
-                            ),
-                            onTap: _refreshCaptcha,
-                          ),
+                          _getRefreshButton(),
+                          _getCaptchaInputWidget(screenWidth),
                           SizedBox(height: 16),
                           Row(
                             children: <Widget>[
@@ -97,7 +91,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
   /// 获取刷新验证码组件
   Widget _getRefreshButton() {
     return TextButton(
-        onPressed: () => null,
+        onPressed: _refreshCaptcha,
         child: Text(AppLocalizations.of(context)!.captchaDialogClickRefresh));
   }
 
@@ -139,7 +133,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
         onPressed: () {
           if (_captchaResp?.uuid == null ||
               _captcha == null ||
-              _captcha!.length != 4) {
+              !RegExp(CAPTCHA_REGEX).hasMatch(_captcha!)) {
             showToast(
                 AppLocalizations.of(context)!.captchaDialogCaptchaIncorrect);
             return;
