@@ -139,7 +139,7 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
         onPressed: () {
           if (_captchaResp?.uuid == null ||
               _captcha == null ||
-              _captcha!.length == 0) {
+              _captcha!.length != 4) {
             showToast(
                 AppLocalizations.of(context)!.captchaDialogCaptchaIncorrect);
             return;
