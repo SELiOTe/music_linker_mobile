@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:mlm/model/api/auth/is_signed_up.dart';
+import 'package:mlm/main.dart';
 import 'package:mlm/model/api/auth/country_list.dart';
+import 'package:mlm/model/api/auth/is_signed_up.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
 import 'package:mlm/page/auth/login_page.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
@@ -65,7 +66,7 @@ class _AuthPageState extends State<AuthPage> {
               // 手机号码
               _getMobileNumberWidget(),
               // 下一步
-              _getNextButton(),
+              getNextButton(_nextButtonOnPressed),
               SizedBox(height: 36)
             ],
           ),
@@ -168,43 +169,6 @@ class _AuthPageState extends State<AuthPage> {
         ));
   }
 
-  /// 获取下一步按钮
-  ///
-  /// return 下一步按钮 Widget
-  Widget _getNextButton() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 32, right: 16),
-      // 使按钮右对齐
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(),
-            flex: 1,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(30)),
-            alignment: Alignment.bottomRight,
-            height: 36,
-            child: TextButton(
-              onPressed: _nextButtonOnPressed,
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    AppLocalizations.of(context)!.nextStep,
-                    style: TextStyle(
-                        color: Colors.lightBlueAccent,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   /// 请求并自动匹配当前国家
   Future<void> _reqCountryAndAutoMatch() async {
     // 国家码
@@ -289,6 +253,44 @@ Future<CaptchaDialogResult?> getCaptchaAndSendVerifyCode(
             return WillPopScope(
                 onWillPop: () async => true, child: CaptchaDialog());
           }));
+}
+
+/// 获取下一步按钮
+///
+/// return 下一步按钮 Widget
+Widget getNextButton(VoidCallback callback) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 32, right: 16),
+    // 使按钮右对齐
+    child: Row(
+      children: [
+        Expanded(
+          child: Container(),
+          flex: 1,
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(30)),
+          alignment: Alignment.bottomRight,
+          height: 36,
+          child: TextButton(
+            onPressed: callback,
+            child: Row(
+              children: <Widget>[
+                Text(
+                  AppLocalizations.of(globalKey.currentState!.context)!
+                      .nextStep,
+                  style: TextStyle(
+                      color: Colors.lightBlueAccent,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    ),
+  );
 }
 
 /// 认证与授权
