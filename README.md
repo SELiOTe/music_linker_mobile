@@ -4,4 +4,4 @@
 
 ## 环境及版本
 
-- Flutter 2.2.3 • channel stable
+- Flutter stable channel 2.2.3
