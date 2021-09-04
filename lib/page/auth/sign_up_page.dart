@@ -16,7 +16,7 @@ import 'package:mlm/util/ui_utils.dart';
 /// @author seliote
 /// @version 2021-08-24
 
-const SIGN_UP_PAGE = "/sign_up";
+const SIGN_UP_PAGE = "/auth/sign_up";
 
 class SignUpPage extends StatefulWidget {
   final AuthInfo authInfo;
@@ -45,10 +45,11 @@ class _SignUpPageState extends State<SignUpPage> {
           children: <Widget>[
             Column(
               children: <Widget>[
+                getReturnTelNoPage(),
                 // 标题
-                _getTitle(AppLocalizations.of(context)!.signUpPageTitle),
+                getTitle(AppLocalizations.of(context)!.signUpPageTitle),
                 // 密码
-                _getPasswordWidget(),
+                getPasswordWidget(false, (value) => _password = value),
                 // 验证码框
                 _getVerifyCodeWidget(),
                 SizedBox(height: 32),
@@ -70,39 +71,6 @@ class _SignUpPageState extends State<SignUpPage> {
       _timer!.cancel();
       _timer = null;
     }
-  }
-
-  Widget _getTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 64, bottom: 32),
-      child: Text(
-        title,
-        style: TextStyle(
-            fontSize: 32, color: Colors.white, fontWeight: FontWeight.w900),
-      ),
-    );
-  }
-
-  /// 获取密码输入框
-  ///
-  /// return 密码输入框
-  Widget _getPasswordWidget() {
-    return Padding(
-        padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
-        child: TextField(
-          keyboardType: TextInputType.visiblePassword,
-          textAlign: TextAlign.start,
-          style: TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: AppLocalizations.of(context)!.signUpPagePasswordHint,
-              hintStyle: TextStyle(color: Colors.white70),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              )),
-          onChanged: (value) => _password = value,
-        ));
   }
 
   /// 获取验证码输入框

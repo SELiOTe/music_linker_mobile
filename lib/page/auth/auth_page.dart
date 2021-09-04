@@ -17,7 +17,7 @@ import 'package:mlm/widget/vertical_text_widget.dart';
 /// @author seliote
 /// @version 2021-08-07
 
-const AUTH_PAGE = "/auth";
+const AUTH_PAGE = "/auth/main";
 
 /// 认证与授权页
 class AuthPage extends StatefulWidget {
@@ -240,6 +240,61 @@ BoxDecoration getGradientBackgroundDecoration() {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [Colors.blueGrey, Colors.lightBlueAccent]));
+}
+
+Widget getReturnTelNoPage() {
+  return Padding(
+      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+      child: Row(
+        children: <Widget>[
+          Expanded(child: Container()),
+          IconButton(
+              icon: Icon(Icons.home, color: Colors.white),
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    globalKey.currentState!.context,
+                    AUTH_PAGE,
+                    (route) => false);
+                return;
+              })
+        ],
+      ));
+}
+
+/// 获取标题文本
+Widget getTitle(String title) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 32, bottom: 32),
+    child: Text(
+      title,
+      style: TextStyle(
+          fontSize: 32, color: Colors.white, fontWeight: FontWeight.w900),
+    ),
+  );
+}
+
+/// 获取密码输入框
+///
+/// param
+Widget getPasswordWidget(bool obscureText, ValueChanged<String>? function) {
+  return Padding(
+      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+      child: TextField(
+        obscureText: obscureText,
+        keyboardType: TextInputType.visiblePassword,
+        textAlign: TextAlign.start,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: AppLocalizations.of(globalKey.currentState!.context)!
+                .signUpPagePasswordHint,
+            hintStyle: TextStyle(color: Colors.white70),
+            prefixIcon: Icon(
+              Icons.lock,
+              color: Colors.white,
+            )),
+        onChanged: function,
+      ));
 }
 
 /// 获取验证码弹窗

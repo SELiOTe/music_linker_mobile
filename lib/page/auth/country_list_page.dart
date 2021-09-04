@@ -6,7 +6,7 @@ import 'package:mlm/model/api/auth/country_list.dart';
 /// @author seliote
 /// @version 2021-08-12
 
-const COUNTRY_LIST_PAGE = "/country_list";
+const COUNTRY_LIST_PAGE = "/auth/country_list";
 
 /// 国家码列表页
 class CountryListPage extends StatelessWidget {

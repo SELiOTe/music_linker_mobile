@@ -31,5 +31,8 @@
   "signUpPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
   "signUpPageVerifyCodeIncorrect": "Verify code incorrect",
   "signUpPageSignUpFailed": "SIgn up failed",
-  "signUpPageGetTokenFailed": "Sign up success, please login"
+  "signUpPageGetTokenFailed": "Sign up success, please login",
+  "loginPageTitle": "Login page title",
+  "loginPageForgetPassword": "Forget Password",
+  "loginPagePasswordIncorrect": "Telephone number or password incorrect"
 }

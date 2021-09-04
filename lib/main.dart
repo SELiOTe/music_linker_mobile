@@ -5,6 +5,7 @@ import 'package:mlm/model/provider/global_model.dart';
 import 'package:mlm/page/auth/auth_page.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
 import 'package:mlm/page/auth/login_page.dart';
+import 'package:mlm/page/auth/reset_password.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
 import 'package:mlm/page/home_page.dart';
 import 'package:mlm/page/splash_page.dart';
@@ -69,6 +70,10 @@ Route<dynamic> _generateRoute(RouteSettings routeSettings) {
     case LOGIN_PAGE:
       return MaterialPageRoute(
           builder: (context) => LoginPage(routeSettings.arguments as AuthInfo));
+    case RESET_PASSWORD_PAGE:
+      return MaterialPageRoute(
+          builder: (context) =>
+              ResetPasswordPage(routeSettings.arguments as AuthInfo));
     default:
       throw "404 Page ${routeSettings.name} Not Found";
   }

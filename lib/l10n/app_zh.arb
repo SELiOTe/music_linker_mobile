@@ -130,5 +130,17 @@
   "signUpPageGetTokenFailed": "注册成功，请重新登录",
   "@signUpPageGetTokenFailed": {
     "description": "注册页注册成功但是无法返回登录 Token 提示"
+  },
+  "loginPageTitle": "登录",
+  "@loginPageTitle": {
+    "description": "登录页标题"
+  },
+  "loginPageForgetPassword": "忘记密码",
+  "@loginPageForgetPassword": {
+    "description": "登录页忘记密码"
+  },
+  "loginPagePasswordIncorrect": "手机号码或密码不正确",
+  "@loginPagePasswordIncorrect": {
+    "description": "登录页手机号码或密码不正确"
   }
 }
