@@ -29,7 +29,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   // 设备 ID，用于判断当前是否为信任设备
-  String _deviceId = "";
+  String _deviceNo = "";
 
   // 所有可用国家及当前选择
   List<CountryListResp> _countryList = <CountryListResp>[];
@@ -40,7 +40,7 @@ class _AuthPageState extends State<AuthPage> {
   void initState() {
     super.initState();
     // 获取设备 ID
-    deviceId().then((value) => _deviceId = value);
+    deviceId().then((value) => _deviceNo = value);
     _reqCountryAndAutoMatch();
   }
 
@@ -214,7 +214,7 @@ class _AuthPageState extends State<AuthPage> {
     }
     // 认证与授权信息
     var authInfo = AuthInfo(
-        _deviceId.isEmpty ? DateTime.now().microsecond.toString() : _deviceId,
+        _deviceNo.isEmpty ? DateTime.now().microsecond.toString() : _deviceNo,
         _selectCountry!.phoneCode,
         _telNo!);
     if (resp.code == 0) {
@@ -296,7 +296,7 @@ Widget getNextButton(VoidCallback callback) {
 /// 认证与授权
 class AuthInfo {
   // 设备 ID
-  String deviceId;
+  String deviceNo;
 
   // 国际电话区号
   String phoneCode;
@@ -304,5 +304,5 @@ class AuthInfo {
   // 手机号码
   String telNo;
 
-  AuthInfo(this.deviceId, this.phoneCode, this.telNo);
+  AuthInfo(this.deviceNo, this.phoneCode, this.telNo);
 }

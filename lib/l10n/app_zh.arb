@@ -107,7 +107,7 @@
   "@signUpPageSendVerifyCodeSuccess": {
     "description": "注册页短信验证码发送成功提示"
   },
-  "signUpPageUserHadSignedUp": "用户已注册！",
+  "signUpPageUserHadSignedUp": "用户已注册",
   "@signUpPageUserHadSignedUp": {
     "description": "注册页短信验证码发送成功提示"
   },
@@ -122,5 +122,13 @@
   "signUpPageVerifyCodeIncorrect": "短信验证码不正确",
   "@signUpPageVerifyCodeIncorrect": {
     "description": "注册页短信验证码不正确提示"
+  },
+  "signUpPageSignUpFailed": "注册失败",
+  "@signUpPageSignUpFailed": {
+    "description": "注册页注册失败提示"
+  },
+  "signUpPageGetTokenFailed": "注册成功，请重新登录",
+  "@signUpPageGetTokenFailed": {
+    "description": "注册页注册成功但是无法返回登录 Token 提示"
   }
 }

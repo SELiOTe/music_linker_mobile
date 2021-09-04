@@ -29,5 +29,7 @@
   "signUpPageUserHadSignedUp": "User had signed up",
   "signUpPageSendVerifyCodeFailed": "Verify code send failed",
   "signUpPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
-  "signUpPageVerifyCodeIncorrect": "Verify code incorrect"
+  "signUpPageVerifyCodeIncorrect": "Verify code incorrect",
+  "signUpPageSignUpFailed": "SIgn up failed",
+  "signUpPageGetTokenFailed": "Sign up success, please login"
 }

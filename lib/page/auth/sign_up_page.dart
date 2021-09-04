@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mlm/model/api/auth/sign_up.dart';
 import 'package:mlm/model/api/auth/sign_up_sms.dart';
 import 'package:mlm/page/auth/auth_page.dart';
+import 'package:mlm/page/home_page.dart';
 import 'package:mlm/util/const_utils.dart';
 import 'package:mlm/util/http_utils.dart';
+import 'package:mlm/util/sp_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 
 /// 注册页
@@ -210,5 +213,38 @@ class _SignUpPageState extends State<SignUpPage> {
       showToast(AppLocalizations.of(context)!.signUpPageVerifyCodeIncorrect);
       return;
     }
+    var req = SignUpReq(widget.authInfo.phoneCode, widget.authInfo.telNo,
+        _password, _verifyCode, widget.authInfo.deviceNo);
+    var resp = await HttpUtils.post4Object("/auth/sign_up", reqBody: req);
+    if (resp == null) {
+      return;
+    }
+    if (resp.code == 0) {
+      var respModel = SignUpResp.fromJson(resp.data!);
+      HttpUtils.token = respModel.token;
+      var sp = await SpUtils.getInstance();
+      sp.setString(SP_TOKEN, respModel.token);
+      Navigator.pushNamedAndRemoveUntil(context, HOME_PAGE, (route) => false);
+      return;
+    }
+    if (resp.code == 1) {
+      // 短信验证码不正确
+      showToast(AppLocalizations.of(context)!.signUpPageVerifyCodeIncorrect);
+      return;
+    }
+    if (resp.code == 3 || resp.code == 4) {
+      // 添加受信任设备失败或获取登录 Token 失败
+      showToast(AppLocalizations.of(context)!.signUpPageGetTokenFailed);
+      Navigator.pushNamedAndRemoveUntil(context, AUTH_PAGE, (route) => false);
+      return;
+    }
+    if (resp.code == 2) {
+      // 注册失败
+      showToast(AppLocalizations.of(context)!.signUpPageSignUpFailed);
+      return;
+    }
+    // 其他的都视为注册失败
+    showToast(AppLocalizations.of(context)!.serverError);
+    return;
   }
 }
