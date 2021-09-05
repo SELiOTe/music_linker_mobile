@@ -3,9 +3,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/main.dart';
 import 'package:mlm/model/api/auth/country_list.dart';
 import 'package:mlm/model/api/auth/is_signed_up.dart';
+import 'package:mlm/model/api/auth/is_trust_device.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
-import 'package:mlm/page/auth/login_page.dart';
+import 'package:mlm/page/auth/reset_password.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
+import 'package:mlm/page/auth/trust_device_login_page.dart';
+import 'package:mlm/page/auth/trustless_device_login_page.dart';
 import 'package:mlm/util/hardware_util.dart';
 import 'package:mlm/util/http_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
@@ -29,7 +32,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   // 设备 ID，用于判断当前是否为信任设备
-  String _deviceNo = "";
+  String _deviceNo = DateTime.now().microsecond.toString();
 
   // 所有可用国家及当前选择
   List<CountryListResp> _countryList = <CountryListResp>[];
@@ -213,20 +216,38 @@ class _AuthPageState extends State<AuthPage> {
       return;
     }
     // 认证与授权信息
-    var authInfo = AuthInfo(
-        _deviceNo.isEmpty ? DateTime.now().microsecond.toString() : _deviceNo,
-        _selectCountry!.phoneCode,
-        _telNo!);
+    var authInfo = AuthInfo(_deviceNo, _selectCountry!.phoneCode, _telNo!);
     if (resp.code == 0) {
-      // 进登录
+      // 进登录，判断是否是受信任设备
       debugPrint("Login");
-      Navigator.pushNamedAndRemoveUntil(context, LOGIN_PAGE, (_) => false,
-          arguments: authInfo);
+      var rep = IsTrustDevice(_selectCountry!.phoneCode, _telNo!, _deviceNo);
+      var resp =
+          await HttpUtils.post4Object("/auth/is_trust_device", reqBody: rep);
+      if (resp == null) {
+        return;
+      }
+      if (resp.code == 0) {
+        // 受信设备
+        Navigator.pushNamedAndRemoveUntil(
+            context, TRUST_DEVICE_LOGIN_PAGE, (_) => false,
+            arguments: authInfo);
+        return;
+      } else if (resp.code == 2) {
+        // 非受信设备
+        Navigator.pushNamedAndRemoveUntil(
+            context, TRUSTLESS_DEVICE_LOGIN_PAGE, (_) => false,
+            arguments: authInfo);
+        return;
+      } else {
+        showToast(AppLocalizations.of(context)!.serverError);
+        return;
+      }
     } else {
       // 进注册
       debugPrint("Sign up");
       Navigator.pushNamedAndRemoveUntil(context, SIGN_UP_PAGE, (_) => false,
           arguments: authInfo);
+      return;
     }
   }
 }
@@ -242,6 +263,7 @@ BoxDecoration getGradientBackgroundDecoration() {
           colors: [Colors.blueGrey, Colors.lightBlueAccent]));
 }
 
+/// 获取顶部返回手机号码注册页 Widget
 Widget getReturnTelNoPage() {
   return Padding(
       padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
@@ -343,6 +365,75 @@ Widget getNextButton(VoidCallback callback) {
             ),
           ),
         )
+      ],
+    ),
+  );
+}
+
+/// 忘记密码组件
+Widget getForgetPasswordWidget(BuildContext context, AuthInfo authInfo) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+    child: Row(
+      children: <Widget>[
+        SizedBox(width: 8),
+        TextButton(
+            child: Text(AppLocalizations.of(context)!.loginPageForgetPassword,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline)),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RESET_PASSWORD_PAGE, (route) => false,
+                  arguments: authInfo);
+            }),
+        Expanded(child: Container())
+      ],
+    ),
+  );
+}
+
+/// 获取验证码输入框
+///
+/// return 验证码输入框
+Widget getVerifyCodeWidget(
+    BuildContext context,
+    ValueChanged<String> textOnChange,
+    int countDown,
+    VoidCallback buttonClick) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 24, left: 32, right: 16),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          flex: 3,
+          child: TextField(
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.start,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText:
+                    AppLocalizations.of(context)!.signUpPageVerifyCodeHint,
+                hintStyle: TextStyle(color: Colors.white70)),
+            onChanged: textOnChange,
+          ),
+        ),
+        Expanded(
+            flex: 2,
+            child: TextButton(
+                child: Text(countDown > 0
+                    ? "${countDown}s"
+                    : AppLocalizations.of(context)!
+                        .signUpPageGetVerifyCodeButton),
+                onPressed: countDown > 0 ? null : buttonClick,
+                style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                      return countDown > 0 ? Colors.white54 : Colors.white;
+                    }),
+                    overlayColor: MaterialStateProperty.all(Colors.white10))))
       ],
     ),
   );

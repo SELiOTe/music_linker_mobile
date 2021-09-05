@@ -4,9 +4,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/model/provider/global_model.dart';
 import 'package:mlm/page/auth/auth_page.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
-import 'package:mlm/page/auth/login_page.dart';
 import 'package:mlm/page/auth/reset_password.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
+import 'package:mlm/page/auth/trust_device_login_page.dart';
+import 'package:mlm/page/auth/trustless_device_login_page.dart';
 import 'package:mlm/page/home_page.dart';
 import 'package:mlm/page/splash_page.dart';
 import 'package:provider/provider.dart';
@@ -67,9 +68,14 @@ Route<dynamic> _generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
           builder: (context) =>
               SignUpPage(routeSettings.arguments as AuthInfo));
-    case LOGIN_PAGE:
+    case TRUST_DEVICE_LOGIN_PAGE:
       return MaterialPageRoute(
-          builder: (context) => LoginPage(routeSettings.arguments as AuthInfo));
+          builder: (context) =>
+              TrustDeviceLoginPage(routeSettings.arguments as AuthInfo));
+    case TRUSTLESS_DEVICE_LOGIN_PAGE:
+      return MaterialPageRoute(
+          builder: (context) =>
+              TrustlessDeviceLoginPage(routeSettings.arguments as AuthInfo));
     case RESET_PASSWORD_PAGE:
       return MaterialPageRoute(
           builder: (context) =>

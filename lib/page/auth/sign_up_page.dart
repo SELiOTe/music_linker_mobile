@@ -51,7 +51,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 // 密码
                 getPasswordWidget(false, (value) => _password = value),
                 // 验证码框
-                _getVerifyCodeWidget(),
+                getVerifyCodeWidget(context, (value) => _verifyCode = value,
+                    _countDown, _getVerifyCode),
                 SizedBox(height: 32),
                 // 下一步
                 getNextButton(_nextStepOnPressed),
@@ -73,47 +74,6 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  /// 获取验证码输入框
-  ///
-  /// return 验证码输入框
-  Widget _getVerifyCodeWidget() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24, left: 32, right: 16),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: TextField(
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.start,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText:
-                      AppLocalizations.of(context)!.signUpPageVerifyCodeHint,
-                  hintStyle: TextStyle(color: Colors.white70)),
-              onChanged: (value) => _verifyCode = value,
-            ),
-          ),
-          Expanded(
-              flex: 2,
-              child: TextButton(
-                  child: Text(_countDown > 0
-                      ? "${_countDown}s"
-                      : AppLocalizations.of(context)!
-                          .signUpPageGetVerifyCodeButton),
-                  onPressed: _countDown > 0 ? null : _getVerifyCode,
-                  style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((states) {
-                        return _countDown > 0 ? Colors.white54 : Colors.white;
-                      }),
-                      overlayColor: MaterialStateProperty.all(Colors.white10))))
-        ],
-      ),
-    );
-  }
-
   /// 获取验证码按钮点击事件
   void _getVerifyCode() async {
     // 图形验证码弹窗并校验后请求发送验证码
@@ -121,7 +81,9 @@ class _SignUpPageState extends State<SignUpPage> {
     if (result == null) {
       return;
     }
-    if (result.uuid == null || result.captcha == null) {
+    if (result.uuid == null ||
+        result.captcha == null ||
+        !RegExp(CAPTCHA_REGEX).hasMatch(result.captcha!)) {
       showToast(AppLocalizations.of(context)!.captchaDialogCaptchaIncorrect);
       return;
     }

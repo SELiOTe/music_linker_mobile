@@ -135,12 +135,16 @@
   "@loginPageTitle": {
     "description": "登录页标题"
   },
-  "loginPageForgetPassword": "忘记密码",
+  "loginPageForgetPassword": "忘记密码？",
   "@loginPageForgetPassword": {
     "description": "登录页忘记密码"
   },
   "loginPagePasswordIncorrect": "手机号码或密码不正确",
   "@loginPagePasswordIncorrect": {
     "description": "登录页手机号码或密码不正确"
+  },
+  "loginPageUserNotSignedUp": "用户还未注册，请先注册后登录",
+  "@loginPageUserNotSignedUp": {
+    "description": "登录页用户还未注册"
   }
 }

@@ -33,6 +33,7 @@
   "signUpPageSignUpFailed": "SIgn up failed",
   "signUpPageGetTokenFailed": "Sign up success, please login",
   "loginPageTitle": "Login page title",
-  "loginPageForgetPassword": "Forget Password",
-  "loginPagePasswordIncorrect": "Telephone number or password incorrect"
+  "loginPageForgetPassword": "Forget Password?",
+  "loginPagePasswordIncorrect": "Telephone number or password incorrect",
+  "loginPageUserNotSignedUp": "User not signed up, please sign up first"
 }
