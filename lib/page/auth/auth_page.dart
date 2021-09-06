@@ -297,10 +297,11 @@ Widget getTitle(String title) {
 
 /// 获取密码输入框
 ///
-/// param
+/// param obscureText 是否隐藏字符
+/// param function 字符修改触发事件
 Widget getPasswordWidget(bool obscureText, ValueChanged<String>? function) {
   return Padding(
-      padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+      padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
       child: TextField(
         obscureText: obscureText,
         keyboardType: TextInputType.visiblePassword,

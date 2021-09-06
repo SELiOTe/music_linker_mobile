@@ -13,6 +13,7 @@ SignUpReq _$SignUpReqFromJson(Map<String, dynamic> json) {
     json['password'] as String,
     json['verify_code'] as String,
     json['device_no'] as String,
+    json['nickname'] as String,
   );
 }
 
@@ -22,6 +23,7 @@ Map<String, dynamic> _$SignUpReqToJson(SignUpReq instance) => <String, dynamic>{
       'password': instance.password,
       'verify_code': instance.verifyCode,
       'device_no': instance.deviceNo,
+      'nickname': instance.nickname,
     };
 
 SignUpResp _$SignUpRespFromJson(Map<String, dynamic> json) {

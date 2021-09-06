@@ -30,8 +30,12 @@ class SignUpReq {
   @JsonKey(name: "device_no")
   String deviceNo;
 
+  // 用户昵称
+  @JsonKey(name: "nickname")
+  String nickname;
+
   SignUpReq(this.phoneCode, this.telNo, this.password, this.verifyCode,
-      this.deviceNo);
+      this.deviceNo, this.nickname);
 
   /// JSON 反序列化
   factory SignUpReq.fromJson(Map<String, dynamic> json) =>

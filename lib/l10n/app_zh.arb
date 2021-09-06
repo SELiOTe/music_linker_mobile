@@ -75,6 +75,10 @@
   "@signUpPagePasswordHint": {
     "description": "注册页请输入密码提示"
   },
+  "signUpPageNicknameHint": "昵称",
+  "@signUpPageNicknameHint": {
+    "description": "注册页昵称提示"
+  },
   "signUpPageGetVerifyCodeButton": "获取验证码",
   "@signUpPageGetVerifyCodeButton": {
     "description": "注册页获取验证码提示"
@@ -118,6 +122,10 @@
   "signUpPagePasswordTooSimple": "密码必须为 8 位以上非空字符且同时包含字母数字",
   "@signUpPagePasswordTooSimple": {
     "description": "注册页密码太简单提示"
+  },
+  "signUpPageNicknameIllegal": "用户昵称长度为 1 至 16",
+  "@signUpPageNicknameIllegal": {
+    "description": "注册页用户昵称不正确提示"
   },
   "signUpPageVerifyCodeIncorrect": "短信验证码不正确",
   "@signUpPageVerifyCodeIncorrect": {

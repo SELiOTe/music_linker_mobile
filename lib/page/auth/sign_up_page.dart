@@ -28,7 +28,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  // 密码及验证码
+  // 昵称、密码及验证码
+  String _nickname = "";
   String _password = "";
   String _verifyCode = "";
 
@@ -48,6 +49,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 getReturnTelNoPage(),
                 // 标题
                 getTitle(AppLocalizations.of(context)!.signUpPageTitle),
+                // 昵称
+                _getNicknameWidget(),
                 // 密码
                 getPasswordWidget(false, (value) => _password = value),
                 // 验证码框
@@ -72,6 +75,25 @@ class _SignUpPageState extends State<SignUpPage> {
       _timer!.cancel();
       _timer = null;
     }
+  }
+
+  Widget _getNicknameWidget() {
+    return Padding(
+        padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
+        child: TextField(
+          keyboardType: TextInputType.text,
+          textAlign: TextAlign.start,
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: AppLocalizations.of(context)!.signUpPageNicknameHint,
+              hintStyle: TextStyle(color: Colors.white70),
+              prefixIcon: Icon(
+                Icons.drive_file_rename_outline,
+                color: Colors.white,
+              )),
+          onChanged: (value) => _nickname = value,
+        ));
   }
 
   /// 获取验证码按钮点击事件
@@ -143,8 +165,12 @@ class _SignUpPageState extends State<SignUpPage> {
       showToast(AppLocalizations.of(context)!.signUpPageVerifyCodeIncorrect);
       return;
     }
+    if (!RegExp(NICKNAME_REGEX).hasMatch(_nickname)) {
+      showToast(AppLocalizations.of(context)!.signUpPagePasswordTooSimple);
+      return;
+    }
     var req = SignUpReq(widget.authInfo.phoneCode, widget.authInfo.telNo,
-        _password, _verifyCode, widget.authInfo.deviceNo);
+        _password, _verifyCode, widget.authInfo.deviceNo, _nickname);
     var resp = await HttpUtils.post4Object("/auth/sign_up", reqBody: req);
     if (resp == null) {
       return;

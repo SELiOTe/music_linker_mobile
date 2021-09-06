@@ -7,5 +7,7 @@
 const CAPTCHA_REGEX = r'^[a-zA-Z\d]{4}$';
 // 短信验证码正则
 const VERIFY_CODE_REGEX = r'^\d{6}$';
+// 用户昵称正则
+const NICKNAME_REGEX = r'^.{1,16}$';
 // 密码校验正则，8 位以上非空字符且同时包含字母数字
 const PASSWORD_REGEX = r'^(?=\S*[a-zA-Z])(?=\S*\d)\S{8,}$';
