@@ -105,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _getVerifyCode();
       return;
     } else if (resp.code == 2) {
-      // 验证码不正确
+      // 用户已注册
       showToast(AppLocalizations.of(context)!.signUpPageUserHadSignedUp);
       return;
     } else {

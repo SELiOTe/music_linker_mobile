@@ -107,7 +107,7 @@
   "@signUpPageSendVerifyCodeSuccess": {
     "description": "注册页短信验证码发送成功提示"
   },
-  "signUpPageUserHadSignedUp": "用户已注册",
+  "signUpPageUserHadSignedUp": "用户已注册，请返回后重新登录",
   "@signUpPageUserHadSignedUp": {
     "description": "注册页短信验证码发送成功提示"
   },
@@ -146,5 +146,21 @@
   "loginPageUserNotSignedUp": "用户还未注册，请先注册后登录",
   "@loginPageUserNotSignedUp": {
     "description": "登录页用户还未注册"
+  },
+  "trustlessDeviceLoginPageSendVerifyCodeSuccess": "短信验证码发送成功",
+  "@trustlessDeviceLoginPageSendVerifyCodeSuccess": {
+    "description": "未信任设备登录页短信验证码发送成功提示"
+  },
+  "trustlessDeviceLoginPageDeviceTrusted": "该设备为受信任设备，无需验证码，请重新登录",
+  "@trustlessDeviceLoginPageDeviceTrusted": {
+    "description": "未信任设备登录页该设备为受信任设备提示"
+  },
+  "trustlessDeviceLoginPageSendVerifyCodeFailed": "短信验证码发送失败",
+  "@trustlessDeviceLoginPageSendVerifyCodeFailed": {
+    "description": "注册页短信验证码发送失败提示"
+  },
+  "trustlessDeviceLoginPageVerifyCodeIncorrect": "短信验证码不正确",
+  "@trustlessDeviceLoginPageVerifyCodeIncorrect": {
+    "description": "注册页短信验证码不正确提示"
   }
 }

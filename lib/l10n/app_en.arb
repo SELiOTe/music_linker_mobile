@@ -25,7 +25,7 @@
   "captchaDialogClickRefresh": "Click to refresh",
   "captchaDialogCaptchaHint": "Input Captcha",
   "captchaDialogCaptchaIncorrect": "Captcha incorrect, please input again",
-  "signUpPageSendVerifyCodeSuccess": "Verify code send successful",
+  "signUpPageSendVerifyCodeSuccess": "Verify code send success",
   "signUpPageUserHadSignedUp": "User had signed up",
   "signUpPageSendVerifyCodeFailed": "Verify code send failed",
   "signUpPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
@@ -35,5 +35,9 @@
   "loginPageTitle": "Login page title",
   "loginPageForgetPassword": "Forget Password?",
   "loginPagePasswordIncorrect": "Telephone number or password incorrect",
-  "loginPageUserNotSignedUp": "User not signed up, please sign up first"
+  "loginPageUserNotSignedUp": "User not signed up, please sign up first",
+  "trustlessDeviceLoginPageSendVerifyCodeSuccess": "Verify code send success",
+  "trustlessDeviceLoginPageDeviceTrusted": "Trusted device, please login directly",
+  "trustlessDeviceLoginPageSendVerifyCodeFailed": "Verify code send failed",
+  "trustlessDeviceLoginPageVerifyCodeIncorrect": "Verify code incorrect"
 }
