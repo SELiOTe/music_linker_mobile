@@ -38,6 +38,7 @@
   "loginPageForgetPassword": "Forget Password?",
   "loginPagePasswordIncorrect": "Telephone number or password incorrect",
   "loginPageUserNotSignedUp": "User not signed up, please sign up first",
+  "loginPageNotTrustDevice": "Device not trust, please login again",
   "trustlessDeviceLoginPageSendVerifyCodeSuccess": "Verify code send success",
   "trustlessDeviceLoginPageDeviceTrusted": "Trusted device, please login directly",
   "trustlessDeviceLoginPageSendVerifyCodeFailed": "Verify code send failed",

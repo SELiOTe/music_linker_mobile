@@ -181,7 +181,7 @@ class _TrustlessDeviceLoginPageState extends State<TrustlessDeviceLoginPage> {
       showToast(AppLocalizations.of(context)!.loginPagePasswordIncorrect);
       return;
     } else {
-      // 帐号或密码不正确
+      // 服务器存在问题
       showToast(AppLocalizations.of(context)!.serverError);
       return;
     }

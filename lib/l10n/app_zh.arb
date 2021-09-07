@@ -155,6 +155,10 @@
   "@loginPageUserNotSignedUp": {
     "description": "登录页用户还未注册"
   },
+  "loginPageNotTrustDevice": "该设备为非受信任设备，请重新登录",
+  "@loginPageNotTrustDevice": {
+    "description": "登录页该设备为非受信任设备提示"
+  },
   "trustlessDeviceLoginPageSendVerifyCodeSuccess": "短信验证码发送成功",
   "@trustlessDeviceLoginPageSendVerifyCodeSuccess": {
     "description": "未信任设备登录页短信验证码发送成功提示"
