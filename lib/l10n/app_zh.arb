@@ -135,6 +135,10 @@
   "@signUpPageSignUpFailed": {
     "description": "注册页注册失败提示"
   },
+  "signUpPageSignUpSuccess": "注册成功",
+  "@signUpPageSignUpSuccess": {
+    "description": "注册页注册注册成功提示"
+  },
   "signUpPageGetTokenFailed": "注册成功，请重新登录",
   "@signUpPageGetTokenFailed": {
     "description": "注册页注册成功但是无法返回登录 Token 提示"
@@ -150,6 +154,10 @@
   "loginPagePasswordIncorrect": "手机号码或密码不正确",
   "@loginPagePasswordIncorrect": {
     "description": "登录页手机号码或密码不正确"
+  },
+  "loginPagePasswordLoginSuccess": "登录成功",
+  "@loginPagePasswordLoginSuccess": {
+    "description": "登录页登录成功登录成功提示"
   },
   "loginPageUserNotSignedUp": "用户还未注册，请先注册后登录",
   "@loginPageUserNotSignedUp": {
@@ -194,5 +202,17 @@
   "resetPasswordPageSendVerifyCodeFailed": "短信验证码发送失败",
   "@resetPasswordPageSendVerifyCodeFailed": {
     "description": "重置密码页短信验证码发送失败提示"
+  },
+  "resetPasswordPagePasswordTooSimple": "密码必须为 8 位以上非空字符且同时包含字母数字",
+  "@resetPasswordPagePasswordTooSimple": {
+    "description": "重置密码页密码太简单提示"
+  },
+  "resetPasswordPageVerifyCodeIncorrect": "短信验证码不正确",
+  "@resetPasswordPageVerifyCodeIncorrect": {
+    "description": "重置密码页短信验证码不正确提示"
+  },
+  "resetPasswordPageResetSuccess": "密码重置成功",
+  "@resetPasswordPageResetSuccess": {
+    "description": "重置密码页密码重置成功提示"
   }
 }

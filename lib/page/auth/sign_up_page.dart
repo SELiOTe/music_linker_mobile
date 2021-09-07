@@ -179,27 +179,26 @@ class _SignUpPageState extends State<SignUpPage> {
       HttpUtils.token = respModel.token;
       var sp = await SpUtils.getInstance();
       sp.setString(SP_TOKEN, respModel.token);
+      showToast(AppLocalizations.of(context)!.signUpPageSignUpSuccess);
       Navigator.pushNamedAndRemoveUntil(context, HOME_PAGE, (route) => false);
       return;
-    }
-    if (resp.code == 1) {
+    } else if (resp.code == 1) {
       // 短信验证码不正确
       showToast(AppLocalizations.of(context)!.signUpPageVerifyCodeIncorrect);
       return;
-    }
-    if (resp.code == 3 || resp.code == 4) {
+    } else if (resp.code == 3 || resp.code == 4) {
       // 添加受信任设备失败或获取登录 Token 失败
       showToast(AppLocalizations.of(context)!.signUpPageGetTokenFailed);
       Navigator.pushNamedAndRemoveUntil(context, AUTH_PAGE, (route) => false);
       return;
-    }
-    if (resp.code == 2) {
+    } else if (resp.code == 2) {
       // 注册失败
       showToast(AppLocalizations.of(context)!.signUpPageSignUpFailed);
       return;
+    } else {
+      // 其他的都视为注册失败
+      showToast(AppLocalizations.of(context)!.serverError);
+      return;
     }
-    // 其他的都视为注册失败
-    showToast(AppLocalizations.of(context)!.serverError);
-    return;
   }
 }

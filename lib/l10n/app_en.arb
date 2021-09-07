@@ -32,11 +32,13 @@
   "signUpPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
   "signUpPageNicknameIllegal": "Nickname must between 1 to 16",
   "signUpPageVerifyCodeIncorrect": "Verify code incorrect",
-  "signUpPageSignUpFailed": "SIgn up failed",
+  "signUpPageSignUpFailed": "Sign up failed",
+  "signUpPageSignUpSuccess": "Sign up success",
   "signUpPageGetTokenFailed": "Sign up success, please login",
   "loginPageTitle": "Login page title",
   "loginPageForgetPassword": "Forget Password?",
   "loginPagePasswordIncorrect": "Telephone number or password incorrect",
+  "loginPagePasswordLoginSuccess": "Login success",
   "loginPageUserNotSignedUp": "User not signed up, please sign up first",
   "loginPageNotTrustDevice": "Device not trust, please login again",
   "trustlessDeviceLoginPageSendVerifyCodeSuccess": "Verify code send success",
@@ -47,5 +49,8 @@
   "resetPasswordPageVerifyCodeSendSuccess": "Verify code send success",
   "resetPasswordPageCpatchaIncorrect": "Captcha incorrect, please try again",
   "resetPasswordPageUserNotSignedUp": "User had not signed up, please signed up first",
-  "resetPasswordPageSendVerifyCodeFailed": "Verify code send failed"
+  "resetPasswordPageSendVerifyCodeFailed": "Verify code send failed",
+  "resetPasswordPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
+  "resetPasswordPageVerifyCodeIncorrect": "Verify code incorrect",
+  "resetPasswordPageResetSuccess": "Password reset success"
 }

@@ -168,6 +168,7 @@ class _TrustlessDeviceLoginPageState extends State<TrustlessDeviceLoginPage> {
       HttpUtils.token = respModel.token;
       var sp = await SpUtils.getInstance();
       sp.setString(SP_TOKEN, respModel.token);
+      showToast(AppLocalizations.of(context)!.loginPagePasswordLoginSuccess);
       Navigator.pushNamedAndRemoveUntil(context, HOME_PAGE, (route) => false);
       return;
     } else if (resp.code == 1) {

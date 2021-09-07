@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/model/provider/global_model.dart';
 import 'package:mlm/page/auth/auth_page.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
-import 'package:mlm/page/auth/reset_password.dart';
+import 'package:mlm/page/auth/reset_password_page.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
 import 'package:mlm/page/auth/trust_device_login_page.dart';
 import 'package:mlm/page/auth/trustless_device_login_page.dart';

@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mlm/model/api/auth/reset_password.dart';
 import 'package:mlm/model/api/auth/reset_password_sms.dart';
 import 'package:mlm/page/auth/auth_page.dart';
+import 'package:mlm/page/home_page.dart';
 import 'package:mlm/util/const_utils.dart';
 import 'package:mlm/util/http_utils.dart';
+import 'package:mlm/util/sp_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 
 /// 重置密码页
@@ -47,7 +50,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               getVerifyCodeWidget(context, (value) => _verifyCode = value,
                   _countDown, _getVerifyCode),
               SizedBox(height: 32),
-              getNextButton(() => null)
+              getNextButton(_nextStepOnPressed)
             ])
           ])),
     );
@@ -123,5 +126,47 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         }
       });
     });
+  }
+
+  void _nextStepOnPressed() async {
+    if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
+      showToast(
+          AppLocalizations.of(context)!.resetPasswordPagePasswordTooSimple);
+      return;
+    }
+    if (!RegExp(VERIFY_CODE_REGEX).hasMatch(_verifyCode)) {
+      showToast(
+          AppLocalizations.of(context)!.resetPasswordPageVerifyCodeIncorrect);
+      return;
+    }
+    var req = ResetPasswordReq(widget.authInfo.phoneCode, widget.authInfo.telNo,
+        _password, _verifyCode, widget.authInfo.deviceNo);
+    var resp =
+        await HttpUtils.post4Object("/auth/reset_password", reqBody: req);
+    if (resp == null) {
+      return;
+    }
+    if (resp.code == 0) {
+      var respModel = ResetPasswordResp.fromJson(resp.data!);
+      HttpUtils.token = respModel.token;
+      var sp = await SpUtils.getInstance();
+      sp.setString(SP_TOKEN, respModel.token);
+      showToast(AppLocalizations.of(context)!.resetPasswordPageResetSuccess);
+      Navigator.pushNamedAndRemoveUntil(context, HOME_PAGE, (route) => false);
+      return;
+    } else if (resp.code == 1) {
+      showToast(
+          AppLocalizations.of(context)!.resetPasswordPageVerifyCodeIncorrect);
+      return;
+    } else if (resp.code == 2) {
+      // 短信验证码不正确
+      showToast(AppLocalizations.of(context)!.resetPasswordPageUserNotSignedUp);
+      Navigator.pushNamedAndRemoveUntil(context, AUTH_PAGE, (route) => false);
+      return;
+    } else {
+      // 其他的都视为注册失败
+      showToast(AppLocalizations.of(context)!.serverError);
+      return;
+    }
   }
 }

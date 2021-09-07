@@ -5,7 +5,7 @@ import 'package:mlm/model/api/auth/country_list.dart';
 import 'package:mlm/model/api/auth/is_signed_up.dart';
 import 'package:mlm/model/api/auth/is_trust_device.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
-import 'package:mlm/page/auth/reset_password.dart';
+import 'package:mlm/page/auth/reset_password_page.dart';
 import 'package:mlm/page/auth/sign_up_page.dart';
 import 'package:mlm/page/auth/trust_device_login_page.dart';
 import 'package:mlm/page/auth/trustless_device_login_page.dart';
