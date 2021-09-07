@@ -52,8 +52,7 @@ class _TrustlessDeviceLoginPageState extends State<TrustlessDeviceLoginPage> {
                 getVerifyCodeWidget(context, (value) => _verifyCode = value,
                     _countDown, _getVerifyCode),
                 getForgetPasswordWidget(context, widget.authInfo),
-                getNextButton(_nextStepOnPressed),
-                SizedBox(height: 32)
+                getNextButton(_nextStepOnPressed)
               ],
             )
           ],

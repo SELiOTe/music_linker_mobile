@@ -69,8 +69,7 @@ class _AuthPageState extends State<AuthPage> {
               // 手机号码
               _getMobileNumberWidget(),
               // 下一步
-              getNextButton(_nextButtonOnPressed),
-              SizedBox(height: 36)
+              getNextButton(_nextButtonOnPressed)
             ],
           ),
         ]),
@@ -338,7 +337,7 @@ Future<CaptchaDialogResult?> getCaptchaAndSendVerifyCode(
 /// return 下一步按钮 Widget
 Widget getNextButton(VoidCallback callback) {
   return Padding(
-    padding: const EdgeInsets.only(top: 32, right: 16),
+    padding: const EdgeInsets.only(top: 32, right: 16, bottom: 32),
     // 使按钮右对齐
     child: Row(
       children: [

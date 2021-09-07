@@ -58,8 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     _countDown, _getVerifyCode),
                 SizedBox(height: 32),
                 // 下一步
-                getNextButton(_nextStepOnPressed),
-                SizedBox(height: 32)
+                getNextButton(_nextStepOnPressed)
               ],
             )
           ],

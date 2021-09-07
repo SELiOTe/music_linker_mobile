@@ -42,5 +42,10 @@
   "trustlessDeviceLoginPageSendVerifyCodeSuccess": "Verify code send success",
   "trustlessDeviceLoginPageDeviceTrusted": "Trusted device, please login directly",
   "trustlessDeviceLoginPageSendVerifyCodeFailed": "Verify code send failed",
-  "trustlessDeviceLoginPageVerifyCodeIncorrect": "Verify code incorrect"
+  "trustlessDeviceLoginPageVerifyCodeIncorrect": "Verify code incorrect",
+  "resetPasswordPageTitle": "Rest Password",
+  "resetPasswordPageVerifyCodeSendSuccess": "Verify code send success",
+  "resetPasswordPageCpatchaIncorrect": "Captcha incorrect, please try again",
+  "resetPasswordPageUserNotSignedUp": "User had not signed up, please signed up first",
+  "resetPasswordPageSendVerifyCodeFailed": "Verify code send failed"
 }

@@ -174,5 +174,25 @@
   "trustlessDeviceLoginPageVerifyCodeIncorrect": "短信验证码不正确",
   "@trustlessDeviceLoginPageVerifyCodeIncorrect": {
     "description": "注册页短信验证码不正确提示"
+  },
+  "resetPasswordPageTitle": "重置密码",
+  "@resetPasswordPageTitle": {
+    "description": "重置密码页标题"
+  },
+  "resetPasswordPageVerifyCodeSendSuccess": "验证码发送成功",
+  "@resetPasswordPageVerifyCodeSendSuccess": {
+    "description": "重置密码页短信验证码发送成功提示"
+  },
+  "resetPasswordPageCpatchaIncorrect": "图形验证码不正确，请重新输入",
+  "@resetPasswordPageCpatchaIncorrect": {
+    "description": "重置密码页图形验证码不正确提示"
+  },
+  "resetPasswordPageUserNotSignedUp": "用户尚未注册，请先注册",
+  "@resetPasswordPageUserNotSignedUp": {
+    "description": "重置密码页用户尚未注册提示"
+  },
+  "resetPasswordPageSendVerifyCodeFailed": "短信验证码发送失败",
+  "@resetPasswordPageSendVerifyCodeFailed": {
+    "description": "重置密码页短信验证码发送失败提示"
   }
 }

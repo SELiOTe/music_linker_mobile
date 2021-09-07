@@ -41,8 +41,7 @@ class _TrustDeviceLoginPageState extends State<TrustDeviceLoginPage> {
                 getTitle(AppLocalizations.of(context)!.loginPageTitle),
                 getPasswordWidget(true, (value) => _password = value),
                 getForgetPasswordWidget(context, widget.authInfo),
-                getNextButton(_nextStepOnPress),
-                SizedBox(height: 32)
+                getNextButton(_nextStepOnPress)
               ],
             )
           ],
