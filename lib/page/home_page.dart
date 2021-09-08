@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mlm/page/auth/auth_page.dart';
+import 'package:mlm/util/sp_utils.dart';
 
 /// 主页
 ///
@@ -18,6 +20,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.amber);
+    return Center(
+      child: TextButton(
+          child: Text("Click Me"),
+          onPressed: () async {
+            var sp = await SpUtils.getInstance();
+            sp.remove(SP_TOKEN);
+            Navigator.pushNamedAndRemoveUntil(
+                context, AUTH_PAGE, (route) => false);
+            return;
+          }),
+    );
   }
 }

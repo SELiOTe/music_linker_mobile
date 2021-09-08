@@ -142,7 +142,7 @@ class _TrustlessDeviceLoginPageState extends State<TrustlessDeviceLoginPage> {
   }
 
   /// 下一步按钮点击事件
-  void _nextStepOnPressed() async {
+  Future<void> _nextStepOnPressed() async {
     if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
       showToast(AppLocalizations.of(context)!.loginPagePasswordIncorrect);
       return;

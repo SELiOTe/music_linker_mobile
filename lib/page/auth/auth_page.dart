@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mlm/main.dart';
 import 'package:mlm/model/api/auth/country_list.dart';
 import 'package:mlm/model/api/auth/is_signed_up.dart';
@@ -11,9 +12,11 @@ import 'package:mlm/page/auth/trust_device_login_page.dart';
 import 'package:mlm/page/auth/trustless_device_login_page.dart';
 import 'package:mlm/util/hardware_util.dart';
 import 'package:mlm/util/http_utils.dart';
+import 'package:mlm/util/typedef_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 import 'package:mlm/widget/captcha_dialog.dart';
-import 'package:mlm/widget/vertical_text_widget.dart';
+import 'package:mlm/widget/loading_button.dart';
+import 'package:mlm/widget/vertical_text.dart';
 
 /// 授权页面
 ///
@@ -198,7 +201,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   /// 下一步按钮点击事件
-  void _nextButtonOnPressed() async {
+  Future<void> _nextButtonOnPressed() async {
     if (_selectCountry == null || _selectCountry!.phonePattern.isEmpty) {
       showToast(AppLocalizations.of(context)!.authPageCountryUnselect);
       return;
@@ -334,8 +337,8 @@ Future<CaptchaDialogResult?> getCaptchaAndSendVerifyCode(
 
 /// 获取下一步按钮
 ///
-/// return 下一步按钮 Widget
-Widget getNextButton(VoidCallback callback) {
+/// param callback 按钮点击回调
+Widget getNextButton(AsyncVoidCallback callback) {
   return Padding(
     padding: const EdgeInsets.only(top: 32, right: 16, bottom: 32),
     // 使按钮右对齐
@@ -350,9 +353,8 @@ Widget getNextButton(VoidCallback callback) {
               color: Colors.white, borderRadius: BorderRadius.circular(30)),
           alignment: Alignment.bottomRight,
           height: 36,
-          child: TextButton(
-            onPressed: callback,
-            child: Row(
+          child: LoadingButton(
+            Row(
               children: <Widget>[
                 Text(
                   AppLocalizations.of(globalKey.currentState!.context)!
@@ -363,6 +365,11 @@ Widget getNextButton(VoidCallback callback) {
                 ),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: SpinKitDoubleBounce(color: Colors.blueAccent),
+            ),
+            callback,
           ),
         )
       ],

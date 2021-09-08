@@ -51,7 +51,7 @@ class _TrustDeviceLoginPageState extends State<TrustDeviceLoginPage> {
   }
 
   /// 下一步按钮点击
-  void _nextStepOnPress() async {
+  Future<void> _nextStepOnPress() async {
     if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
       showToast(AppLocalizations.of(context)!.loginPagePasswordIncorrect);
       return;

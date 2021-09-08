@@ -128,7 +128,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     });
   }
 
-  void _nextStepOnPressed() async {
+  Future<void> _nextStepOnPressed() async {
     if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
       showToast(
           AppLocalizations.of(context)!.resetPasswordPagePasswordTooSimple);

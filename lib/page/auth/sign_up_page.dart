@@ -155,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   /// 获取下一步
-  void _nextStepOnPressed() async {
+  Future<void> _nextStepOnPressed() async {
     if (!RegExp(PASSWORD_REGEX).hasMatch(_password)) {
       showToast(AppLocalizations.of(context)!.signUpPagePasswordTooSimple);
       return;
@@ -170,7 +170,8 @@ class _SignUpPageState extends State<SignUpPage> {
     }
     var req = SignUpReq(widget.authInfo.phoneCode, widget.authInfo.telNo,
         _password, _verifyCode, widget.authInfo.deviceNo, _nickname);
-    var resp = await HttpUtils.post4Object("/auth/sign_up", reqBody: req);
+    var resp = await HttpUtils.post4Object("/auth/sign_up",
+        reqBody: req, timeout: 20000);
     if (resp == null) {
       return;
     }
