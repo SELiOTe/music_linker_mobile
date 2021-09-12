@@ -44,8 +44,10 @@ class _CaptchaDialogState extends State<CaptchaDialog> {
       backgroundColor: Colors.transparent,
       content: UnconstrainedBox(
           child: Container(
-              color: Colors.white,
               width: 2 * screenWidth / 3,
+              decoration: BoxDecoration(
+                  color: Colors.white60,
+                  borderRadius: BorderRadius.all(Radius.circular(8))),
               child: SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.all(16),
