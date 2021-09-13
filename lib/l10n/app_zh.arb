@@ -214,5 +214,23 @@
   "resetPasswordPageResetSuccess": "密码重置成功",
   "@resetPasswordPageResetSuccess": {
     "description": "重置密码页密码重置成功提示"
+  },
+  "homePageMusicCatalogMyUpload": "我上传的音乐",
+  "@homePageMusicCatalogMyUpload": {
+    "description": "主页歌单我上传的音乐"
+  },
+  "homePageMusicCatalogCount": "{count} 首",
+  "@homePageMusicCatalogCount": {
+    "description": "主页歌单曲数单位",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "homePageMyMusicCatalog": "我的歌单",
+  "@homePageMyMusicCatalog": {
+    "description": "主页我的歌单分割"
   }
 }

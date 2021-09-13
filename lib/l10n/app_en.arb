@@ -52,5 +52,8 @@
   "resetPasswordPageSendVerifyCodeFailed": "Verify code send failed",
   "resetPasswordPagePasswordTooSimple": "Password must latest had 8 character and both contain letter and number",
   "resetPasswordPageVerifyCodeIncorrect": "Verify code incorrect",
-  "resetPasswordPageResetSuccess": "Password reset success"
+  "resetPasswordPageResetSuccess": "Password reset success",
+  "homePageMusicCatalogMyUpload": "My Upload",
+  "homePageMusicCatalogCount": "total {count}",
+  "homePageMyMusicCatalog": "My Catalog"
 }
