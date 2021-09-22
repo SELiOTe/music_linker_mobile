@@ -28,7 +28,7 @@ class InfoResp {
 
   // 用户性别
   @JsonKey(name: "gender")
-  String gender;
+  int gender;
 
   // 用户头像
   @JsonKey(name: "avatar")

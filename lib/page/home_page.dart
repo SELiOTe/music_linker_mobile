@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mlm/model/api/music_catalog/upload_count.dart';
 import 'package:mlm/model/api/user/info.dart';
+import 'package:mlm/model/provider/user_info_model.dart';
 import 'package:mlm/util/http_utils.dart';
+import 'package:mlm/util/ui_utils.dart';
+import 'package:provider/provider.dart';
 
 /// 主页
 ///
@@ -19,13 +23,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  InfoResp? infoResp;
+  int? _uploadCount;
 
   @override
   void initState() {
     super.initState();
-    HttpUtils.post4Object("/user/info")
-        .then((value) => debugPrint("${value!.data}"));
+    _initAll();
   }
 
   @override
@@ -62,12 +65,13 @@ class _HomePageState extends State<HomePage> {
                             Icon(Icons.cloud_upload),
                             AppLocalizations.of(context)!
                                 .homePageMusicCatalogMyUpload,
-                            7);
+                            _uploadCount == null ? 0 : _uploadCount!);
                       } else if (index == 1) {
                         return Padding(
                             padding: const EdgeInsets.only(left: 16),
-                            child: Text(AppLocalizations.of(context)!
-                                .homePageMyMusicCatalog,
+                            child: Text(
+                                AppLocalizations.of(context)!
+                                    .homePageMyMusicCatalog,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800,
                                     color: Colors.black54)));
@@ -125,5 +129,50 @@ class _HomePageState extends State<HomePage> {
                 )
               ]),
         ));
+  }
+
+  void _initAll() async {
+    var userInfoModel = Provider.of<UserInfoModel>(context, listen: false);
+    await _initUserInfo(userInfoModel);
+    _initMusicCatalog(userInfoModel);
+  }
+
+  Future<void> _initUserInfo(UserInfoModel model) async {
+    var resp = await HttpUtils.post4Object("/user/info");
+    if (resp == null) {
+      return;
+    }
+    if (resp.code != 0) {
+      showToast(AppLocalizations.of(context)!.homePageFailedGetUserInfo);
+      return;
+    }
+    var info = InfoResp.fromJson(resp.data!);
+    model.userId = info.userId;
+    model.countryCode = info.countryCode;
+    model.localName = info.localName;
+    model.nickname = info.nickname;
+    model.gender = info.gender;
+    model.avatar = info.avatar;
+  }
+
+  void _initMusicCatalog(UserInfoModel userInfoModel) async {
+    if (userInfoModel.userId == null) {
+      return;
+    }
+    var req = UploadCountReq(userInfoModel.userId!);
+    var resp = await HttpUtils.post4Object("/music_catalog/upload_count",
+        reqBody: req);
+    if (resp == null) {
+      return;
+    }
+    if (resp.code == 1) {
+      showToast(
+          AppLocalizations.of(context)!.homePageGetCatalogCountUserNotExist);
+      return;
+    }
+    var respModel = UploadCountResp.fromJson(resp.data!);
+    setState(() {
+      _uploadCount = respModel.count;
+    });
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:mlm/model/provider/global_model.dart';
+import 'package:mlm/model/provider/user_info_model.dart';
 import 'package:mlm/page/auth/auth_page.dart';
 import 'package:mlm/page/auth/country_list_page.dart';
 import 'package:mlm/page/auth/reset_password_page.dart';
@@ -26,7 +26,7 @@ final GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
 void main() {
   // 应用全局 Provider
   runApp(ChangeNotifierProvider(
-    create: (context) => GlobalModel(),
+    create: (context) => UserInfoModel(),
     child: App(),
   ));
 }

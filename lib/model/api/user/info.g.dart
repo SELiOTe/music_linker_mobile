@@ -12,7 +12,7 @@ InfoResp _$InfoRespFromJson(Map<String, dynamic> json) {
     json['country_code'] as String,
     json['local_name'] as String,
     json['nickname'] as String,
-    json['gender'] as String,
+    json['gender'] as int,
     json['avatar'] as String,
   );
 }

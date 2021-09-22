@@ -55,5 +55,7 @@
   "resetPasswordPageResetSuccess": "Password reset success",
   "homePageMusicCatalogMyUpload": "My Upload",
   "homePageMusicCatalogCount": "total {count}",
-  "homePageMyMusicCatalog": "My Catalog"
+  "homePageMyMusicCatalog": "My Catalog",
+  "homePageFailedGetUserInfo": "Failed get user info",
+  "homePageGetCatalogCountUserNotExist": "Failed get upload count, user not exists"
 }

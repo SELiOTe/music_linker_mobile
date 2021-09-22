@@ -4,4 +4,4 @@
 
 ## 环境及版本
 
-- Flutter stable channel 2.5.0
+- Flutter stable channel 2.5.1

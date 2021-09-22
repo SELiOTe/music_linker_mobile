@@ -232,5 +232,13 @@
   "homePageMyMusicCatalog": "我的歌单",
   "@homePageMyMusicCatalog": {
     "description": "主页我的歌单分割"
+  },
+  "homePageFailedGetUserInfo": "个人信息获取失败",
+  "@homePageFailedGetUserInfo": {
+    "description": "主页个人信息获取失败"
+  },
+  "homePageGetCatalogCountUserNotExist": "获取歌单数量失败，用户不存在！",
+  "@homePageGetCatalogCountUserNotExist": {
+    "description": "主页获取歌单数量时用户不存在"
   }
 }
