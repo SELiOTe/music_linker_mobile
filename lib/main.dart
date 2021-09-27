@@ -25,7 +25,7 @@ final GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
 /// 应用入口方法
 void main() {
   // 应用全局 Provider
-  runApp(ChangeNotifierProvider(
+  runApp(ChangeNotifierProvider<UserInfoModel>(
     create: (context) => UserInfoModel(),
     child: App(),
   ));
