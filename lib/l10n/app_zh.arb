@@ -240,5 +240,9 @@
   "homePageGetCatalogCountUserNotExist": "获取歌单数量失败，用户不存在！",
   "@homePageGetCatalogCountUserNotExist": {
     "description": "主页获取歌单数量时用户不存在"
+  },
+  "uploadPageTitleSuffix": "上传的音乐",
+  "@uploadPageTitleSuffix": {
+    "description": "我的上传上传的音乐标题后缀"
   }
 }

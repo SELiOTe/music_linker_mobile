@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mlm/model/api/music_catalog/upload_count.dart';
 import 'package:mlm/model/api/user/info.dart';
 import 'package:mlm/model/provider/user_info_model.dart';
+import 'package:mlm/page/uploaded_page.dart';
 import 'package:mlm/util/http_utils.dart';
 import 'package:mlm/util/ui_utils.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.white,
             elevation: 0,
             leading: Builder(
                 builder: (context) => IconButton(
@@ -89,46 +89,51 @@ class _HomePageState extends State<HomePage> {
 
   Widget _getMusicCatalogCard(Widget leading, String title, int count) {
     var leadingSize = 40.0;
-    return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child: IntrinsicHeight(
-          child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                ConstrainedBox(
-                    constraints: BoxConstraints(
-                        minWidth: leadingSize,
-                        maxWidth: leadingSize,
-                        minHeight: leadingSize,
-                        maxHeight: leadingSize),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: Colors.black54,
-                            )),
-                        child: leading)),
-                SizedBox(
-                  width: 16,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color: Colors.black54)),
-                    Expanded(child: Container()),
-                    Text(AppLocalizations.of(context)!
-                        .homePageMusicCatalogCount(count))
-                  ],
-                )
-              ]),
-        ));
+    return GestureDetector(
+      child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(8)),
+          child: IntrinsicHeight(
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  ConstrainedBox(
+                      constraints: BoxConstraints(
+                          minWidth: leadingSize,
+                          maxWidth: leadingSize,
+                          minHeight: leadingSize,
+                          maxHeight: leadingSize),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: Colors.black54,
+                              )),
+                          child: leading)),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              color: Colors.black54)),
+                      Expanded(child: Container()),
+                      Text(AppLocalizations.of(context)!
+                          .homePageMusicCatalogCount(count))
+                    ],
+                  )
+                ]),
+          )),
+      onTap: () {
+        Navigator.pushNamed(context, UPLOADED_PAGE);
+      },
+    );
   }
 
   void _initAll() async {

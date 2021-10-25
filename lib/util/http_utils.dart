@@ -18,10 +18,33 @@ import 'package:mlm/util/ui_utils.dart';
 
 /// HTTP 工具类
 class HttpUtils {
+  // Authorization 请求头
+  static const String AUTHORIZATION_HEADER = "Authorization";
+
+  // 认证类型
+  static const String AUTHORIZATION_TYPE = "Bearer";
+
   // 请求 Token，当为 null 时请求将不会携带 Token
   static String _token = "";
 
-  static set token(String token) => _token = token;
+  static set token(String token) {
+    if (token.isEmpty) {
+      debugPrint("Empty token to set");
+      return;
+    }
+    _token = token;
+  }
+
+  static String get token => _token;
+
+  /// 创建 URI
+  ///
+  /// uri 部分 URI
+  static Uri getUri(String uri) {
+    return Uri.parse(
+            "$BASE_URL/$uri".replaceAll(RegExp("(?<!(http:|https:))/+"), "/"))
+        .normalizePath();
+  }
 
   /// 请求单对象响应
   ///
@@ -75,12 +98,10 @@ class HttpUtils {
       {Object? reqBody, int timeout = 3 * 1000}) async {
     debugPrint("POST $uri, request body $reqBody, timeout $timeout");
     // 拼接 URL 并格式化，Uri 居然不支持格式化多个反斜线
-    var url = Uri.parse(
-            "$BASE_URL/$uri".replaceAll(RegExp("(?<!(http:|https:))/+"), "/"))
-        .normalizePath();
+    var url = getUri(uri);
     var headers = {
       "Content-Type": "application/json",
-      if (_token.isNotEmpty) "Authorization": "Bearer $_token"
+      if (_token.isNotEmpty) AUTHORIZATION_HEADER: "$AUTHORIZATION_TYPE $_token"
     };
     Response resp;
     try {

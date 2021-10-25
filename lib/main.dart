@@ -10,6 +10,7 @@ import 'package:mlm/page/auth/trust_device_login_page.dart';
 import 'package:mlm/page/auth/trustless_device_login_page.dart';
 import 'package:mlm/page/home_page.dart';
 import 'package:mlm/page/splash_page.dart';
+import 'package:mlm/page/uploaded_page.dart';
 import 'package:provider/provider.dart';
 
 import 'model/api/auth/country_list.dart';
@@ -80,6 +81,8 @@ Route<dynamic> _generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
           builder: (context) =>
               ResetPasswordPage(routeSettings.arguments as AuthInfo));
+    case UPLOADED_PAGE:
+      return MaterialPageRoute(builder: (context) => UploadedPage());
     default:
       throw "404 Page ${routeSettings.name} Not Found";
   }

@@ -57,5 +57,6 @@
   "homePageMusicCatalogCount": "total {count}",
   "homePageMyMusicCatalog": "My Catalog",
   "homePageFailedGetUserInfo": "Failed get user info",
-  "homePageGetCatalogCountUserNotExist": "Failed get upload count, user not exists"
+  "homePageGetCatalogCountUserNotExist": "Failed get upload count, user not exists",
+  "uploadPageTitleSuffix": " Uploaded"
 }
