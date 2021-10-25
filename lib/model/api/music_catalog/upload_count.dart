@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'upload_count.g.dart';
 
 /// /music_catalog/upload_count 获取用户上传音乐总数请求与响应
-/// 
+///
 /// @author seliote
 /// @version 2021-09-22
 
